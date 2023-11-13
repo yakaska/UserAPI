@@ -5,10 +5,7 @@ namespace UserAPI.Domain;
 
 public class UserContext : DbContext
 {
-    public UserContext(DbContextOptions options) : base(options)
-    {
-        Database.EnsureCreated();
-    }
+    public UserContext(DbContextOptions options) : base(options) {}
 
     public DbSet<User?> Users { get; set; }
 }
