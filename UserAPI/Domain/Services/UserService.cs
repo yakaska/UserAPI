@@ -22,7 +22,7 @@ public class UserService : IUserService
     {
         var user = await _userContext.Users.FindAsync(id);
 
-        if (user != null) return await _userContext.Users.FindAsync(id);
+        if (user != null) return user;
 
         // хардкодить плохо!
         var response = await _client.GetAsync($"https://jsonplaceholder.typicode.com/users/{id}");
@@ -36,5 +36,6 @@ public class UserService : IUserService
     public void Add(User user)
     {
         _userContext.Users.Add(user); // хз как лучше
+        _userContext.SaveChanges();
     }
 }
